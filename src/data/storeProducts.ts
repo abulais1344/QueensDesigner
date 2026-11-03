@@ -1,0 +1,116 @@
+import type { Photo, Product } from '../types'
+
+/**
+ * Real Queens Collection pieces photographed in store. Photos live in
+ * public/products/<id>/ (cut from the store's catalogue collages).
+ * Prices, fabrics and stock are starting values — adjust them in /admin.
+ */
+function storePhotos(id: string, details: number): Photo[] {
+  return [
+    { src: `/products/${id}/front.jpg` },
+    { src: `/products/${id}/back.jpg` },
+    { src: `/products/${id}/side.jpg` },
+    ...Array.from({ length: details }, (_, i) => ({ src: `/products/${id}/detail-${i + 1}.jpg` })),
+  ]
+}
+
+export const storeProducts: Product[] = [
+  {
+    id: 'ivory-zari-sharara-set',
+    name: 'Ivory Zari Sharara Set',
+    category: 'Sharara Sets',
+    subtitle: 'Embroidered short kurta, tiered sharara & tasselled dupatta',
+    price: 12490,
+    mrp: 15990,
+    rating: 0,
+    reviews: 0,
+    photos: storePhotos('ivory-zari-sharara-set', 5),
+    colors: [{ name: 'Ivory', hex: '#F3EDE2' }],
+    sizes: ['S', 'M', 'L', 'XL'],
+    stock: { S: 3, M: 5, L: 4, XL: 2 },
+    fabric: 'Georgette with net dupatta',
+    work: 'Zari, dabka & sequin floral embroidery',
+    occasion: 'Wedding',
+    setIncludes: 'Kurta, sharara, dupatta',
+    description:
+      'A soft ivory short kurta with gold zari vines and silver sequin florals across the yoke, bell sleeves and hem, paired with a full tiered sharara edged in gold lace. Finished with a sheer net dupatta, embroidered border and golden tassels — made for nikah, mehendi and day weddings.',
+    highlights: ['Bell sleeves with embroidered cuffs', 'Tiered sharara with gold lace bands', 'Dupatta with golden tassels'],
+    isNew: true,
+    isBestseller: true,
+    rank: -4,
+    arrival: 104,
+  },
+  {
+    id: 'pista-cutwork-embroidered-suit',
+    name: 'Pista Cutwork Embroidered Suit',
+    category: 'Suits',
+    subtitle: 'Straight kurta with cutwork, embroidered pants & ombré dupatta',
+    price: 9990,
+    mrp: 12990,
+    rating: 0,
+    reviews: 0,
+    photos: storePhotos('pista-cutwork-embroidered-suit', 5),
+    colors: [{ name: 'Pista Green', hex: '#D9DB9C' }],
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    stock: { S: 4, M: 6, L: 5, XL: 3, XXL: 2 },
+    fabric: 'Organza kurta, silk-blend pants',
+    work: 'Thread & sequin embroidery with cutwork borders',
+    occasion: 'Festive',
+    setIncludes: 'Kurta, pants, dupatta',
+    description:
+      'A pista green straight kurta covered in tonal embroidery, with a chevron-patterned front panel and cutwork scalloped hems. Matching pants carry embroidered hems, and the peach-and-pista striped organza dupatta is framed with a wide cutwork border.',
+    highlights: ['Cutwork scalloped hems', 'Embroidered pant hems', 'Peach & pista striped dupatta'],
+    isNew: true,
+    rank: -3,
+    arrival: 103,
+  },
+  {
+    id: 'maroon-zari-paisley-lehenga-set',
+    name: 'Maroon Zari Paisley Lehenga Set',
+    category: 'Lehengas',
+    subtitle: 'Paisley-embroidered kurta with tiered lehenga',
+    price: 18990,
+    mrp: 24990,
+    rating: 0,
+    reviews: 0,
+    photos: storePhotos('maroon-zari-paisley-lehenga-set', 4),
+    colors: [{ name: 'Maroon', hex: '#9B1B30' }],
+    sizes: ['S', 'M', 'L', 'XL'],
+    stock: { S: 2, M: 4, L: 3, XL: 2 },
+    fabric: 'Silk blend',
+    work: 'Zari & sequin paisley embroidery',
+    occasion: 'Wedding',
+    setIncludes: 'Kurta, tiered lehenga',
+    description:
+      'A rich maroon kurta-lehenga with a dense paisley yoke in gold and ivory zari, scattered floral buttis on the back and sleeves, and a two-tier lehenga embroidered all over with trailing florals. Classic wedding colour, easy to carry.',
+    highlights: ['All-over paisley & floral embroidery', 'Two-tier lehenga', 'Embroidered sleeves and hems'],
+    isNew: true,
+    isBestseller: true,
+    rank: -2,
+    arrival: 102,
+  },
+  {
+    id: 'champagne-sequin-jacket-lehenga',
+    name: 'Champagne Sequin Jacket Lehenga',
+    category: 'Festive Wear',
+    subtitle: 'Front-open embroidered jacket over tiered lehenga',
+    price: 22990,
+    mrp: 29990,
+    rating: 0,
+    reviews: 0,
+    photos: storePhotos('champagne-sequin-jacket-lehenga', 4),
+    colors: [{ name: 'Champagne', hex: '#D9BF9C' }],
+    sizes: ['S', 'M', 'L', 'XL'],
+    stock: { S: 2, M: 3, L: 3, XL: 1 },
+    fabric: 'Net over satin lining',
+    work: 'Sequin & thread trellis embroidery',
+    occasion: 'Reception',
+    setIncludes: 'Jacket, lehenga',
+    description:
+      'A floor-length champagne jacket with a front slit, worked all over in an ivory trellis of sequins and thread, layered over a ruffled lehenga in the same embroidery. Heavy borders at the hem and cuffs give it a grand finish for receptions and engagements.',
+    highlights: ['Floor-length front-open jacket', 'All-over trellis embroidery', 'Ruffled tiered lehenga'],
+    isNew: true,
+    rank: -1,
+    arrival: 101,
+  },
+]

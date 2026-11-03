@@ -10,10 +10,10 @@ export interface CategoryInfo {
 
 export const categories: CategoryInfo[] = [
   { name: 'Bridal', slug: 'bridal', blurb: 'Lehengas & sarees for the big day', photo: photos.magentaBridal },
-  { name: 'Lehengas', slug: 'lehengas', blurb: 'Sangeet to reception', photo: photos.tealLehenga },
-  { name: 'Suits', slug: 'suits', blurb: 'Anarkalis & kurta sets', photo: photos.greenSuit },
+  { name: 'Lehengas', slug: 'lehengas', blurb: 'Sangeet to reception', photo: { src: '/products/maroon-zari-paisley-lehenga-set/detail-1.jpg' } },
+  { name: 'Suits', slug: 'suits', blurb: 'Anarkalis & kurta sets', photo: { src: '/products/pista-cutwork-embroidered-suit/detail-1.jpg' } },
   { name: 'Festive Wear', slug: 'festive-wear', blurb: 'Sarees & anarkali gowns', photo: photos.plumSaree },
-  { name: 'Sharara Sets', slug: 'sharara-sets', blurb: 'Shararas & ghararas', photo: photos.mustardKurta },
+  { name: 'Sharara Sets', slug: 'sharara-sets', blurb: 'Shararas & ghararas', photo: { src: '/products/ivory-zari-sharara-set/detail-1.jpg' } },
   { name: 'Party Wear', slug: 'party-wear', blurb: 'Gowns & Indo-western', photo: photos.redGown },
 ]
 

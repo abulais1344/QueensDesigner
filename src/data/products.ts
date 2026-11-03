@@ -1,5 +1,6 @@
 import type { Product, Size } from '../types'
 import { photos } from './photos'
+import { storeProducts } from './storeProducts'
 
 /** Seed rows use a compact stock description that `toProduct` expands per size. */
 type SeedProduct = Omit<Product, 'stock'> & { soldOut?: Size[]; lowStock?: number }
@@ -662,4 +663,4 @@ function toProduct({ soldOut = [], lowStock, ...rest }: SeedProduct): Product {
 }
 
 /** Demo catalog used on first load and when admin resets the demo data. */
-export const seedProducts: Product[] = seed.map(toProduct)
+export const seedProducts: Product[] = [...storeProducts, ...seed.map(toProduct)]

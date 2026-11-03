@@ -12,7 +12,7 @@ import { cn } from '../lib/format'
 import { selectBestSellers, selectNewArrivals } from '../lib/product'
 import { buttonClass } from '../lib/ui'
 import { useCatalog } from '../store/catalog'
-import type { Category } from '../types'
+import type { Category, Photo } from '../types'
 
 export default function Home() {
   const { visibleProducts } = useCatalog()
@@ -80,20 +80,20 @@ function Hero() {
 
         <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-1">
           <PromoTile
-            to="/shop?category=lehengas&sort=new"
-            eyebrow="New in"
-            title="Organza lehengas"
-            note="From ₹13,490"
-            photo={photos.tealLehenga}
-            tone="bg-[#e3efee]"
+            to="/product/ivory-zari-sharara-set"
+            eyebrow="New in store"
+            title="Ivory Zari Sharara"
+            note="Nikah & mehendi ready"
+            photo={{ src: '/products/ivory-zari-sharara-set/detail-1.jpg' }}
+            tone="bg-[#f4ece2]"
           />
           <PromoTile
-            to="/shop?category=suits&price=under-5k,5k-10k"
-            eyebrow="Festive staples"
-            title="Suits under ₹10k"
-            note="Ready to ship"
-            photo={photos.greenSuit}
-            tone="bg-blush"
+            to="/product/pista-cutwork-embroidered-suit"
+            eyebrow="New in store"
+            title="Pista Cutwork Suit"
+            note="With ombré dupatta"
+            photo={{ src: '/products/pista-cutwork-embroidered-suit/detail-1.jpg' }}
+            tone="bg-[#eef0d9]"
           />
         </div>
       </div>
@@ -106,7 +106,7 @@ interface PromoTileProps {
   eyebrow: string
   title: string
   note: string
-  photo: (typeof photos)[keyof typeof photos]
+  photo: Photo
   tone: string
 }
 

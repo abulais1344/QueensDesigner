@@ -8,6 +8,9 @@ import { CatalogContext, type CatalogValue, type PlaceOrderInput } from './catal
 // All persistence goes through these keys; swap this module for API calls to move to a real backend.
 const PRODUCTS_KEY = 'products.v1'
 const ORDERS_KEY = 'orders.v1'
+const SEED_VERSION_KEY = 'seedVersion'
+/** Bump when seed products are added so browsers with saved data receive them. */
+const SEED_VERSION = 2
 const channel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('qc-catalog') : null
 
 interface State {
@@ -16,8 +19,20 @@ interface State {
 }
 
 async function load(): Promise<State> {
-  const [products, orders] = await Promise.all([kv.get<Product[]>(PRODUCTS_KEY), kv.get<Order[]>(ORDERS_KEY)])
-  return { products: products ?? seedProducts, orders: orders ?? [] }
+  const [stored, orders, seedVersion] = await Promise.all([
+    kv.get<Product[]>(PRODUCTS_KEY),
+    kv.get<Order[]>(ORDERS_KEY),
+    kv.get<number>(SEED_VERSION_KEY),
+  ])
+  let products = stored ?? seedProducts
+  if (stored && (seedVersion ?? 1) < SEED_VERSION) {
+    // Add newly seeded products without touching the admin's existing edits.
+    const added = seedProducts.filter((p) => !stored.some((s) => s.id === p.id))
+    products = [...added, ...stored]
+    await kv.set(PRODUCTS_KEY, products)
+  }
+  if (seedVersion !== SEED_VERSION) await kv.set(SEED_VERSION_KEY, SEED_VERSION)
+  return { products, orders: orders ?? [] }
 }
 
 export function CatalogProvider({ children }: { children: ReactNode }) {
